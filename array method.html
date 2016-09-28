@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>array</title>
+</head>
+<body>
+<p>请输入您想查找的名字</p>
+<input type="text" name="" id="targetName"><button onclick="myfun1()">search</button><br>
+<p id="result"></p>
+<script>
+	//查找数组中的元素, indexOf("str")由于判断数组位置，如在数组中找不到"str",就返回-1
+	function myfun1(){
+		var names=["lala","ksks","jdjd","hfhf"];
+		var targetName=document.getElementById("targetName").value;
+		console.log("targetName:" + targetName);
+		var position =names.indexOf(targetName);
+		console.log("position:" +position);
+		var result=document.getElementById('result');
+		
+		if (targetName==="") {
+			alert("please input a name");
+			return false;
+		}
+		else if (position>=0) {
+			result.innerHTML= "Found" + targetName + " at position " + position;
+		}
+		else{
+			result.innerHTML= targetName + " not found in array.";
+		}
+
+	}
+
+
+//数组迭代器
+
+
+//forEach(func)
+function myfun2(){
+	function square(num){
+		console.log(num,num*num);
+	}
+	var nums=[];
+	for (var i = 0; i < 10; i++) {
+		nums[i]= i+1;
+	}
+	nums.forEach(square);
+}
+myfun2();
+
+//every（func），返回布尔值,所有数据都满足条件才为true
+function myfun3(){
+	function isEven(num){
+		return num%2==0;
+	}
+	var nums=[2,4,6,8,10];
+	var even=nums.every(isEven);
+	if (even) {
+		console.log("all numbers are even");
+	}
+	else{
+		console.log("not all numbers are even");
+	}
+}
+myfun3();
+//some(func),返回布尔值，其中一个数据满足条件为true；
+function myfun4(){
+	function isEven(num){
+		return num%2==0;
+	}
+	var nums=[];
+	for (var i = 0; i < 10; i++) {
+		nums[i]= i+1;
+	}
+	var even= nums.some(isEven);
+	if (even) {
+		console.log("some of the numbers is even");
+	}
+	else{
+		console.log("all of numbers are not even");
+	}
+}
+myfun4();
+
+//reduce()类似于+=
+function myfun5(){
+	function concat(accumulatedString,item){
+		return accumulatedString+item;
+	}
+	var words=["I ","am ","Tracy "];
+	var centence=words.reduce(concat);
+	console.log("centence:" + centence);
+
+	//reduceRight()表示从右到左执行
+	var centenceR=words.reduceRight(concat);
+	console.log("centenceR:" +centenceR);
+}
+myfun5();
+
+
+//map()产生新数组
+function myfun6(){
+	function first(word){
+		return word[0];
+		
+	}
+	var words=["I ","am ","Tracy "];
+	var newWord=words.map(first);
+	console.log("newWord:" + newWord);
+}
+myfun6();
+
+//filter()返回布尔值，但只返回true，不返回false。下面的函数是查找含“cie”的字符串
+function myfun7(){
+	function afterc(str){
+		if (str.indexOf("cie")>-1) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	var words=["recieve","deceive","percieve","decit","concieve"];
+	var mispelled=words.filter(afterc);
+	console.log("mispelled:" + mispelled);
+}
+myfun7();
+</script>
+</body>
+</html>
