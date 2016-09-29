@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>array practice</title>
+</head>
+<body>
+<p>创建一个记录学生成绩单对象，求平均成绩。</p>
+<button onclick="getAver()">添加学生成绩</button>
+<p id="averGrade"></p>
+<script>
+	function getAver(){
+		var amount=Number(prompt("请输入学生人数"));
+		console.log(isNaN(amount));
+		if (isNaN( amount)==true) {
+			alert("请输入数字");
+			return false;
+		}
+		else{			
+			var grades=[];
+			var sum=0;
+			for (var i = 0; i < amount; i++) {
+				var grade=Number(prompt("请输入学生分数"));
+				if (isNaN( grade)==true) {
+					alert("请输入数字");
+					return false;
+				}
+				grades[i]=grade;
+				sum += grades[i];
+			}
+		}
+		var averGrade=sum/amount;
+		document.getElementById("averGrade").innerHTML="averGrade:" + averGrade;
+	}
+
+	//2.正序和反序显示数组的单词
+	function showWords(){
+		function concat(accumulateString,item){
+			return accumulateString+item;
+		}
+		var names=["lala ","ksks ","jdjd ","hfhf "];
+		var toRight=names.reduce(concat);
+		console.log("toRight:" + toRight);
+		var toLeft=names.reduceRight(concat);
+		console.log("toLeft:" + toLeft);
+		console.log(typeof(toLeft));
+	}
+	showWords();
+
+	//4.数组转换成字符串
+	function toString(){
+		var names=["lala","ksks","jdjd","hfhf"];
+		console.log("names:" +names.join(""));
+	}
+	toString();
+</script>
+</body>
+</html>
